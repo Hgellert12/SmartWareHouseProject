@@ -10,7 +10,8 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.annotation.LastModifiedDate;
 
-import java.time.LocalDate;
+
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -19,6 +20,9 @@ public class Item {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @NotBlank
+    private String SKU;
 
     @NotBlank
     private String name;
@@ -30,6 +34,10 @@ public class Item {
     private Double price;
 
     @LastModifiedDate
-    private LocalDate lastPurchase;
+    private LocalDateTime lastPurchase;
+
+    @NotBlank
+    private String Supplier;
+
 
 }
