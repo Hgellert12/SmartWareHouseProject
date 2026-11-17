@@ -19,7 +19,7 @@ import java.time.LocalDateTime;
 public class Item {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
     @NotBlank
     private String SKU;
@@ -34,10 +34,13 @@ public class Item {
     private Double price;
 
     @LastModifiedDate
-    private LocalDateTime lastPurchase;
+    private LocalDateTime lastModifiedDate;
 
     @NotBlank
-    private String Supplier;
+    private String supplier;
+
+    @NotNull
+    private Boolean deleteFlag;
 
 
 }
