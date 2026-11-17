@@ -27,9 +27,9 @@ public class WarehouseService {
         return ResponseEntity.ok().build();
     }
 
-    public List<Item> listAllItems()
+    public List<ItemDTO> listAllItems()
     {
-        return itemRepository.findAll();
+        return itemRepository.findAll().stream().map(new ItemDTO()::itemToDTO).toList();
     }
 
     public ResponseEntity<Void> deleteItem(Integer id)
