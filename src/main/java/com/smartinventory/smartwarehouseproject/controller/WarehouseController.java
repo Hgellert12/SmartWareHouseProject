@@ -2,7 +2,10 @@ package com.smartinventory.smartwarehouseproject.controller;
 
 import com.smartinventory.smartwarehouseproject.entity.Item;
 import com.smartinventory.smartwarehouseproject.service.WarehouseService;
+import jakarta.validation.Valid;
+import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,7 +17,7 @@ public class WarehouseController {
     private WarehouseService warehouseService;
 
     @PostMapping
-    public Item addNewItem(@RequestBody Item item) {
+    public ResponseEntity<Void> addNewItem(@Valid @RequestBody Item item) {
         return warehouseService.addNewItem(item);
     }
 
@@ -25,12 +28,12 @@ public class WarehouseController {
     }
 
     @DeleteMapping("/{id}")
-    public Boolean deleteItem(@RequestHeader Long id) {
+    public ResponseEntity<Void> deleteItem(@RequestHeader Integer id) {
         return warehouseService.deleteItem(id);
     }
 
     @PutMapping("/{id}")
-    public Item editItem(@RequestHeader Long id, @RequestBody Item item)
+    public ResponseEntity<Void> editItem(@RequestHeader Integer id, @RequestBody Item item)
     {
         return warehouseService.editExistingItem(id, item);
     }
