@@ -8,7 +8,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class ItemDTO
+public class ItemRequestDTO
 {
     @NotBlank
     private String name;
@@ -22,9 +22,13 @@ public class ItemDTO
     @NotBlank
     private String supplier;
 
-    public ItemDTO itemToDTO(Item item)
+    @NotBlank
+    private String SKU;
+
+    public ItemRequestDTO itemToRequestDTO(Item item)
     {
-        ItemDTO response = new ItemDTO();
+        ItemRequestDTO response = new ItemRequestDTO();
+        response.setSKU(item.getSKU());
         response.setSupplier(item.getSupplier());
         response.setName(item.getName());
         response.setQuantity(item.getQuantity());
@@ -32,3 +36,4 @@ public class ItemDTO
         return response;
     }
 }
+
