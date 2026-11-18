@@ -34,9 +34,9 @@ public class ItemController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Void> editItem(@RequestHeader Integer id, @RequestBody Item item)
+    public ResponseEntity<Void> editItem(@RequestHeader Integer id, @RequestBody ItemRequestDTO item)
     {
-        return itemService.editExistingItem(id, item);
+        return itemService.editExistingItem(id, item );
     }
     @GetMapping("/{id}")
     public ItemResponseDTO findItemById(@RequestHeader Integer id)

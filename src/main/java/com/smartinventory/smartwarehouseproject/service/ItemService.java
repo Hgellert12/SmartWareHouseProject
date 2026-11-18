@@ -61,32 +61,28 @@ public class ItemService {
         return ItemResponseDTO.itemToResponseDTO(itemRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND)));
     }
 
-    public ResponseEntity<Void> editExistingItem (Integer id, Item newitem)
+    public ResponseEntity<Void> editExistingItem (Integer id, ItemRequestDTO newItem)
     {
         if (id == null || id<1)
         {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         }
         Item oldItem = itemRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
-        if (!newitem.getName().isBlank())
+        if (!newItem.getName().isBlank())
         {
-            oldItem.setName(newitem.getName());
+            oldItem.setName(newItem.getName());
         }
-        if (newitem.getDeleteFlag() == true && oldItem.getDeleteFlag() == true)
+        if (!newItem.getSupplier().isBlank())
         {
-            oldItem.setDeleteFlag(false);
+            oldItem.setSupplier(newItem.getSupplier());
         }
-        if (!newitem.getSupplier().isBlank())
+        if(newItem.getPrice() != null)
         {
-            oldItem.setSupplier(newitem.getSupplier());
+            oldItem.setPrice(newItem.getPrice());
         }
-        if(newitem.getPrice() != null)
+        if(!newItem.getSku().isBlank())
         {
-            oldItem.setPrice(newitem.getPrice());
-        }
-        if(newitem.getQuantity() != null && newitem.getQuantity()>0)
-        {
-            oldItem.setQuantity(newitem.getQuantity());
+            oldItem.setSku(newItem.getSku());
         }
         oldItem.setLastModifiedDate(LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS));
         itemRepository.save(oldItem);
