@@ -20,7 +20,7 @@ public class WarehouseService {
 
     public ResponseEntity<Void> addNewItem(ItemRequestDTO item)
     {
-        if (itemRepository.findBySKU(item.getSku()) != null)
+        if (itemRepository.FindBySku(item.getSku()) != null)
         {
             throw new ResponseStatusException(HttpStatus.CONFLICT);
         }
