@@ -1,5 +1,7 @@
 package com.smartinventory.smartwarehouseproject.controller;
 
+import com.smartinventory.smartwarehouseproject.dto.ItemRequestDTO;
+import com.smartinventory.smartwarehouseproject.dto.ItemResponseDTO;
 import com.smartinventory.smartwarehouseproject.entity.Item;
 import com.smartinventory.smartwarehouseproject.service.WarehouseService;
 import jakarta.validation.Valid;
@@ -16,12 +18,12 @@ public class WarehouseController {
     private WarehouseService warehouseService;
 
     @PostMapping
-    public ResponseEntity<Void> addNewItem(@Valid @RequestBody Item item) {
+    public ResponseEntity<Void> addNewItem(@Valid @RequestBody ItemRequestDTO item) {
         return warehouseService.addNewItem(item);
     }
 
     @GetMapping
-    public List<Item> getAllItem()
+    public List<ItemResponseDTO> getAllItem()
     {
         return warehouseService.listAllItems();
     }
@@ -36,5 +38,6 @@ public class WarehouseController {
     {
         return warehouseService.editExistingItem(id, item);
     }
+
 
 }
