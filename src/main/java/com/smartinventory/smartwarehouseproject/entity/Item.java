@@ -1,16 +1,12 @@
 package com.smartinventory.smartwarehouseproject.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.annotation.LastModifiedDate;
-
-
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Getter
@@ -21,8 +17,9 @@ public class Item {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @Column(unique = true)
     @NotBlank
-    private String SKU;
+    private String sku;
 
     @NotBlank
     private String name;
@@ -31,7 +28,7 @@ public class Item {
     private Integer quantity;
 
     @NotNull
-    private Double price;
+    private BigDecimal price;
 
     @LastModifiedDate
     private LocalDateTime lastModifiedDate;
