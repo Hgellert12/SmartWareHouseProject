@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
 @Service
-public class WarehouseService {
+public class ItemService {
 
     @Autowired
     private ItemRepository itemRepository;
