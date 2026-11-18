@@ -26,9 +26,7 @@ public class Item {
     @NotBlank
     private String name;
 
-    @NotNull
-    @PositiveOrZero
-    private Integer quantity;
+
 
     @NotNull
     @Positive
