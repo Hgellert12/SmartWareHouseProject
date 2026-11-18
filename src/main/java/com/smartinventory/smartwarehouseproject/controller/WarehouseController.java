@@ -38,6 +38,11 @@ public class WarehouseController {
     {
         return warehouseService.editExistingItem(id, item);
     }
+    @GetMapping("/{id}")
+    public ItemResponseDTO findItemById(@RequestHeader Integer id)
+    {
+        return warehouseService.findItemById(id);
+    }
 
 
 }
