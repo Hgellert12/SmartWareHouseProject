@@ -1,10 +1,10 @@
 package com.smartinventory.smartwarehouseproject.dto;
 
-import com.smartinventory.smartwarehouseproject.entity.Item;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
+import java.math.BigDecimal;
 
 @Getter
 @Setter
@@ -17,23 +17,14 @@ public class ItemRequestDTO
     private Integer quantity;
 
     @NotNull
-    private Double price;
+    private BigDecimal price;
 
     @NotBlank
     private String supplier;
 
     @NotBlank
-    private String SKU;
+    private String sku;
 
-    public ItemRequestDTO itemToRequestDTO(Item item)
-    {
-        ItemRequestDTO response = new ItemRequestDTO();
-        response.setSKU(item.getSKU());
-        response.setSupplier(item.getSupplier());
-        response.setName(item.getName());
-        response.setQuantity(item.getQuantity());
-        response.setPrice(item.getPrice());
-        return response;
-    }
+
 }
 
