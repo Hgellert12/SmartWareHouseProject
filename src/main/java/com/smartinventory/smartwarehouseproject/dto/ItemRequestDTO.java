@@ -14,10 +14,6 @@ public class ItemRequestDTO
     private String name;
 
     @NotNull
-    @PositiveOrZero
-    private Integer quantity;
-
-    @NotNull
     @Positive
     private BigDecimal price;
 
@@ -31,7 +27,6 @@ public class ItemRequestDTO
     {
         Item newItem = new Item();
         newItem.setName(itemRequest.getName());
-        newItem.setQuantity(itemRequest.getQuantity());
         newItem.setPrice(itemRequest.getPrice());
         newItem.setSupplier(itemRequest.getSupplier());
         newItem.setSku(itemRequest.getSku());

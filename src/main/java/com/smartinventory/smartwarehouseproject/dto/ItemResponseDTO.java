@@ -13,7 +13,6 @@ public class ItemResponseDTO
     private Integer id;
     private String sku;
     private String name;
-    private Integer quantity;
     private BigDecimal price;
     private String supplier;
 
@@ -24,7 +23,6 @@ public class ItemResponseDTO
         response.setSku(item.getSku());
         response.setSupplier(item.getSupplier());
         response.setName(item.getName());
-        response.setQuantity(item.getQuantity());
         response.setPrice(item.getPrice());
         return response;
     }
