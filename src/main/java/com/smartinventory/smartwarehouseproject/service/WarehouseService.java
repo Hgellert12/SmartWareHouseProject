@@ -1,6 +1,7 @@
 package com.smartinventory.smartwarehouseproject.service;
 
-import com.smartinventory.smartwarehouseproject.dto.ItemDTO;
+import com.smartinventory.smartwarehouseproject.dto.ItemRequestDTO;
+import com.smartinventory.smartwarehouseproject.dto.ItemResponseDTO;
 import com.smartinventory.smartwarehouseproject.entity.Item;
 import com.smartinventory.smartwarehouseproject.repository.ItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,19 +18,19 @@ public class WarehouseService {
     @Autowired
     private ItemRepository itemRepository;
 
-    public ResponseEntity<Void> addNewItem(Item item)
+    public ResponseEntity<Void> addNewItem(ItemRequestDTO item)
     {
-        if (itemRepository.findBySKU(item.getSKU()) != null)
+        if (itemRepository.findBySKU(item.getSku()) != null)
         {
             throw new ResponseStatusException(HttpStatus.CONFLICT);
         }
-        itemRepository.save(item);
+        itemRepository.save(ItemRequestDTO.itemRequestToItem(item));
         return ResponseEntity.ok().build();
     }
 
-    public List<ItemDTO> listAllItems()
+    public List<ItemResponseDTO> listAllItems()
     {
-        return itemRepository.findAll().stream().map(new ItemDTO()::itemToDTO).toList();
+        return itemRepository.findAll().stream().map(item -> ItemResponseDTO.itemToResponseDTO(item)).toList();
     }
 
     public ResponseEntity<Void> deleteItem(Integer id)
@@ -50,14 +51,14 @@ public class WarehouseService {
 
     }
 
-    public ItemDTO findItemById(Integer id)
+    public ItemResponseDTO findItemById(Integer id)
     {
         if (id == null || id<1)
         {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         }
 
-        return new ItemDTO().itemToDTO(itemRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND)));
+        return ItemResponseDTO.itemToResponseDTO(itemRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND)));
     }
 
     public ResponseEntity<Void> editExistingItem (Integer id, Item newitem)
@@ -79,7 +80,7 @@ public class WarehouseService {
         {
             oldItem.setSupplier(newitem.getSupplier());
         }
-        if(newitem.getPrice() != null && newitem.getPrice()>0)
+        if(newitem.getPrice() != null)
         {
             oldItem.setPrice(newitem.getPrice());
         }
