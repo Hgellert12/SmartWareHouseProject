@@ -17,7 +17,7 @@ public class ItemResponseDTO
     private BigDecimal price;
     private String supplier;
 
-    public ItemResponseDTO itemToResponseDTO(Item item)
+    public static ItemResponseDTO itemToResponseDTO(Item item)
     {
         ItemResponseDTO response = new ItemResponseDTO();
         response.setId(item.getId());

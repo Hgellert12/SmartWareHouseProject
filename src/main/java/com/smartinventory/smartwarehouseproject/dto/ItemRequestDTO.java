@@ -27,7 +27,7 @@ public class ItemRequestDTO
     @NotBlank
     private String sku;
 
-    public Item itemRequestToItem(ItemRequestDTO itemRequest)
+    public static Item itemRequestToItem(ItemRequestDTO itemRequest)
     {
         Item newItem = new Item();
         newItem.setName(itemRequest.getName());
