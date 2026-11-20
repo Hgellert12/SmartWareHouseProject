@@ -29,17 +29,17 @@ public class ItemController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteItem(@RequestHeader Integer id) {
+    public ResponseEntity<Void> deleteItem(@PathVariable Integer id) {
         return itemService.deleteItem(id);
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<Void> editItem(@RequestHeader Integer id, @RequestBody ItemRequestDTO item)
+    @PatchMapping("/{id}")
+    public ResponseEntity<Void> editItem(@PathVariable Integer id, @RequestBody ItemRequestDTO item)
     {
         return itemService.editExistingItem(id, item );
     }
     @GetMapping("/{id}")
-    public ItemResponseDTO findItemById(@RequestHeader Integer id)
+    public ItemResponseDTO findItemById(@PathVariable Integer id)
     {
         return itemService.findItemById(id);
     }
